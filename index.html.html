@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ME Eventos | Plataforma 360° & Totem Fotográfico em Campinas e Região</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-dark: #0A0A0C;
+            --bg-card: #141419;
+            --gold-primary: #D4AF37;
+            --gold-light: #F3E5AB;
+            --gold-glow: linear-gradient(135deg, #D4AF37 0%, #FFDF00 50%, #AA8B22 100%);
+            --text-light: #FFFFFF;
+            --text-muted: #A0A0AB;
+            --whatsapp-green: #25D366;
+            --whatsapp-hover: #1EBE5D;
+            --radius-lg: 20px;
+            --radius-md: 12px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background-color: var(--bg-dark); color: var(--text-light); line-height: 1.6; }
+        h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; }
+
+        .top-banner { background: var(--gold-glow); color: #000; text-align: center; padding: 8px 15px; font-weight: 700; font-size: 0.88rem; }
+        header { background-color: rgba(10, 10, 12, 0.95); position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid rgba(212, 175, 55, 0.15); backdrop-filter: blur(10px); }
+        .nav-container { max-width: 1240px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 12px 20px; }
+        
+        .logo-area { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .logo-area img { height: 50px; border-radius: 50%; border: 2px solid var(--gold-primary); }
+        .logo-text { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.2rem; color: var(--text-light); }
+        .logo-text span { color: var(--gold-primary); }
+
+        .nav-links { display: flex; gap: 20px; align-items: center; list-style: none; }
+        .nav-links a { color: var(--text-light); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: 0.3s; }
+        .nav-links a:hover { color: var(--gold-primary); }
+
+        .social-link { color: #E1306C !important; font-weight: 600 !important; display: flex; align-items: center; gap: 6px; }
+
+        .nav-cta { background: var(--whatsapp-green); color: #fff !important; padding: 10px 20px; border-radius: 30px; font-weight: 700 !important; display: flex; align-items: center; gap: 8px; }
+
+        .hero { padding: 80px 20px; text-align: center; background: radial-gradient(circle at top, rgba(212, 175, 55, 0.15), transparent 70%); }
+        .hero h1 { font-size: 2.8rem; margin-bottom: 20px; line-height: 1.2; }
+        .hero h1 span { background: var(--gold-glow); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero p { font-size: 1.2rem; color: var(--text-muted); max-width: 800px; margin: 0 auto 30px; }
+        .btn-main { background: var(--whatsapp-green); color: #fff; font-size: 1.2rem; font-weight: 700; padding: 18px 40px; border-radius: 50px; text-decoration: none; display: inline-flex; align-items: center; gap: 12px; transition: 0.3s; box-shadow: 0 10px 25px rgba(37,211,102,0.3); }
+        .btn-main:hover { background: var(--whatsapp-hover); transform: translateY(-3px); }
+
+        .container { max-width: 1240px; margin: 0 auto; padding: 70px 20px; }
+        .section-header { text-align: center; margin-bottom: 50px; }
+        .section-tag { color: var(--gold-primary); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
+        .section-title { font-size: 2.3rem; margin-top: 5px; }
+        .section-title span { color: var(--gold-primary); }
+
+        /* Sobre a Empresa */
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+        .about-text p { color: var(--text-muted); margin-bottom: 15px; font-size: 1.05rem; }
+        .about-highlights { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 25px; }
+        .about-box { background: var(--bg-card); padding: 15px; border-radius: var(--radius-md); border-left: 3px solid var(--gold-primary); }
+        .about-box h4 { color: var(--gold-primary); font-size: 1rem; margin-bottom: 5px; }
+        .about-box p { font-size: 0.85rem; margin: 0; }
+
+        /* Diferenciais dos Equipamentos */
+        .diff-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+        .diff-card { background: var(--bg-card); padding: 25px; border-radius: var(--radius-md); border: 1px solid rgba(255,255,255,0.05); text-align: center; }
+        .diff-icon { font-size: 2rem; color: var(--gold-primary); margin-bottom: 15px; }
+        .diff-card h4 { font-size: 1.2rem; margin-bottom: 10px; }
+        .diff-card p { font-size: 0.9rem; color: var(--text-muted); }
+
+        /* Cards de Produtos com Mídia Lado a Lado */
+        .product-card { background: var(--bg-card); border-radius: var(--radius-lg); border: 1px solid rgba(212, 175, 55, 0.2); padding: 35px; margin-bottom: 60px; }
+        .product-title { font-size: 2rem; color: var(--gold-primary); margin-bottom: 25px; display: flex; align-items: center; gap: 12px; }
+        .media-side-by-side { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 25px; }
+        .media-box { background: #000; border-radius: var(--radius-md); overflow: hidden; height: 350px; position: relative; border: 1px solid rgba(255,255,255,0.1); }
+        .media-box img, .media-box video { width: 100%; height: 100%; object-fit: cover; }
+        .media-label { position: absolute; top: 12px; left: 12px; background: rgba(0,0,0,0.8); color: #fff; padding: 4px 12px; border-radius: 15px; font-size: 0.75rem; z-index: 2; font-weight: 600; }
+
+        .product-description { background: rgba(0,0,0,0.3); padding: 25px; border-radius: var(--radius-md); border: 1px solid rgba(255,255,255,0.05); }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin: 20px 0; }
+        .feature-item { background: rgba(255,255,255,0.03); padding: 12px; border-radius: 8px; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; }
+        .feature-item i { color: var(--gold-primary); }
+
+        /* Galeria Completa de Fotos */
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; }
+        .gallery-item { height: 220px; border-radius: var(--radius-md); overflow: hidden; border: 1px solid rgba(212, 175, 55, 0.2); position: relative; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.4s; }
+        .gallery-item:hover img { transform: scale(1.08); }
+
+        /* Depoimentos */
+        .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+        .testimonial-card { background: var(--bg-card); border-radius: var(--radius-md); padding: 20px; border: 1px solid rgba(212, 175, 55, 0.2); }
+        .testimonial-print img { width: 100%; border-radius: 8px; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.1); }
+        .testimonial-author { font-size: 0.9rem; color: var(--gold-primary); font-weight: 700; margin-top: 10px; display: flex; justify-content: space-between; }
+
+        /* FAQ */
+        .faq-item { background: var(--bg-card); padding: 20px; border-radius: var(--radius-md); margin-bottom: 12px; border: 1px solid rgba(255,255,255,0.05); }
+        .faq-item h4 { font-size: 1.05rem; color: var(--gold-light); margin-bottom: 8px; }
+        .faq-item p { font-size: 0.95rem; color: var(--text-muted); }
+
+        /* Rodapé */
+        footer { background: #050507; padding: 50px 20px; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; }
+        .footer-logo { max-height: 70px; border-radius: 50%; margin-bottom: 15px; }
+        .social-footer { display: flex; justify-content: center; gap: 15px; margin: 20px 0; }
+        .social-footer a { color: var(--text-light); font-size: 1.5rem; transition: 0.3s; }
+        .social-footer a:hover { color: var(--gold-primary); }
+
+        @media (max-width: 992px) {
+            .about-grid, .media-side-by-side { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .hero h1 { font-size: 2rem; }
+            .media-box { height: 280px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-banner">
+        🔥 Agenda aberta para Campinas e Região! Reserve sua data com condições especiais.
+    </div>
+
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo-area">
+                <img src="WhatsApp Image 2026-07-30 at 16.53.21.jpeg" alt="Logo ME Eventos">
+                <div class="logo-text">ME <span>EVENTOS</span></div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#sobre">Quem Somos</a></li>
+                <li><a href="#diferenciais">Diferenciais</a></li>
+                <li><a href="#equipamentos">Equipamentos</a></li>
+                <li><a href="#galeria">Fotos</a></li>
+                <li><a href="#depoimentos">Depoimentos</a></li>
+                <li><a href="https://instagram.com/Me_eventos17" target="_blank" class="social-link"><i class="fab fa-instagram"></i> @Me_eventos17</a></li>
+            </ul>
+            <a href="https://wa.me/5519994954772?text=Ol%C3%A1!%20Gostaria%20de%20consultar%20uma%20data." class="nav-cta" target="_blank">
+                <i class="fab fa-whatsapp"></i> Cotar no Whats
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Transforme Sua Festa em Um Evento <span>Inesquecível & Sensacional</span></h1>
+        <p>Leve a atração da <strong>Plataforma 360°</strong> e a memória tangível do <strong>Totem Fotográfico com impressão na hora</strong> para seus convidados.</p>
+        <a href="https://wa.me/5519994954772?text=Ol%C3%A1!%20Quero%20consultar%20a%20disponibilidade%20para%20meu%20evento." class="btn-main" target="_blank">
+            <i class="fab fa-whatsapp"></i> CONSULTAR DISPONIBILIDADE DE DATA
+        </a>
+    </section>
+
+    <!-- Quem Somos -->
+    <section class="container" id="sobre">
+        <div class="section-header">
+            <span class="section-tag">Conheça Nossa História</span>
+            <h2 class="section-title">Quem É A <span>ME Eventos?</span></h2>
+        </div>
+        <div class="about-grid">
+            <div class="about-text">
+                <p>A <strong>ME Eventos</strong> nasceu com o propósito de transformar comemorações comuns em experiências extraordinárias e altamente interativas. Atendendo Campinas e toda a região metropolitana, somos especialistas em eternizar momentos especiais.</p>
+                <p>Seja em casamentos, festas de 15 anos, aniversários ou eventos corporativos, nossa missão é entregar entretenimento de alta qualidade, garantindo sorrisos e lembranças que ficam para sempre.</p>
+                
+                <div class="about-highlights">
+                    <div class="about-box">
+                        <h4>Atendimento Humano</h4>
+                        <p>Equipe treinada para auxiliar 100% dos convidados durante o evento.</p>
+                    </div>
+                    <div class="about-box">
+                        <h4>Alta Tecnologia</h4>
+                        <p>Câmeras HD, iluminação profissional LED e impressoras ultrarrápidas.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-item" style="height: 380px;">
+                <img src="WhatsApp Image 2026-07-30 at 16.54.34.jpeg" alt="Estrutura ME Eventos">
+            </div>
+        </div>
+    </section>
+
+    <!-- Diferenciais -->
+    <section class="container" id="diferenciais" style="padding-top: 0;">
+        <div class="section-header">
+            <span class="section-tag">Por Que Ter No Seu Evento?</span>
+            <h2 class="section-title">O Impacto Dos Nossos <span>Equipamentos</span></h2>
+        </div>
+        <div class="diff-grid">
+            <div class="diff-card">
+                <div class="diff-icon"><i class="fas fa-hashtag"></i></div>
+                <h4>Sucesso nas Redes Sociais</h4>
+                <p>Vídeos em 360° com efeitos que convidados postam na hora no Instagram e TikTok.</p>
+            </div>
+            <div class="diff-card">
+                <div class="diff-icon"><i class="fas fa-gift"></i></div>
+                <h4>Lembrança Física Eterna</h4>
+                <p>Fotos impressas instantaneamente em tiras ou formato Polaroid para levar para casa.</p>
+            </div>
+            <div class="diff-card">
+                <div class="diff-icon"><i class="fas fa-laugh-beam"></i></div>
+                <h4>Animação e Interação</h4>
+                <p>Com adereços e plaquinhas divertidas, a atração vira o ponto de encontro da festa.</p>
+            </div>
+            <div class="diff-card">
+                <div class="diff-icon"><i class="fas fa-paint-brush"></i></div>
+                <h4>Design Personalizado</h4>
+                <p>Bordas das fotos e vídeos customizados com seu nome, logo ou tema do aniversário.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Produtos detalhados -->
+    <section class="container" id="equipamentos">
+        <div class="section-header">
+            <span class="section-tag">Nossas Atrações</span>
+            <h2 class="section-title">Nossos <span>Equipamentos</span></h2>
+        </div>
+
+        <!-- Plataforma 360 -->
+        <div class="product-card">
+            <h3 class="product-title"><i class="fas fa-video"></i> Plataforma 360° Premium</h3>
+            <div class="media-side-by-side">
+                <div class="media-box">
+                    <span class="media-label">Foto da Estrutura</span>
+                    <img src="WhatsApp Image 2026-07-30 at 16.47.54.jpeg" alt="Plataforma 360">
+                </div>
+                <div class="media-box">
+                    <span class="media-label">Vídeo em Ação</span>
+                    <video controls poster="WhatsApp Image 2026-07-30 at 16.47.54.jpeg">
+                        <source src="WhatsApp Video 2026-07-30 at 16.47.54.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+            <div class="product-description">
+                <p>Seus convidados sobem em uma plataforma enquanto o braço giratório grava vídeos em alta definição. O sistema aplica efeitos de <em>slow motion</em>, música e gera um QR Code na hora para o convidado baixar direto no celular.</p>
+                <div class="features-grid">
+                    <div class="feature-item"><i class="fas fa-check"></i> Vídeos HD Instantâneos</div>
+                    <div class="feature-item"><i class="fas fa-check"></i> Download por QR Code</div>
+                    <div class="feature-item"><i class="fas fa-check"></i> Iluminação LED Neon</div>
+                    <div class="feature-item"><i class="fas fa-check"></i> Adereços Exclusivos</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Totem Fotográfico -->
+        <div class="product-card">
+            <h3 class="product-title"><i class="fas fa-print"></i> Totem Fotográfico Instantâneo</h3>
+            <div class="media-side-by-side">
+                <div class="media-box">
+                    <span class="media-label">Impressão na Hora</span>
+                    <img src="WhatsApp Image 2026-07-30 at 16.47.54 (1).jpeg" alt="Totem Fotográfico">
+                </div>
+                <div class="media-box">
+                    <span class="media-label">Vídeo do Totem</span>
+                    <video controls>
+                        <source src="WhatsApp Video 2026-07-30 at 16.47.54 (1).mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+            <div class="product-description">
+                <p>Fotos divertidas tiradas através de uma tela touch screen intuitiva. A impressão sai em segundos com qualidade profissional e durabilidade permanente.</p>
+                <div class="features-grid">
+                    <div class="feature-item"><i class="fas fa-check"></i> Fotos Ilimitadas</div>
+                    <div class="feature-item"><i class="fas fa-check"></i> Impressão Térmica Hiti</div>
+                    <div class="feature-item"><i class="fas fa-check"></i> Formatos Tiras ou Polaroid</div>
+                    <div class="feature-item"><i class="fas fa-check"></i> Galeria Digital Pós-Evento</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galeria Completa -->
+    <section class="container" id="galeria" style="padding-top: 0;">
+        <div class="section-header">
+            <span class="section-tag">Galeria de Fotos</span>
+            <h2 class="section-title">Confira <span>Nossos Trabalhos</span></h2>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item"><img src="WhatsApp Image 2026-07-30 at 16.47.54 (2).jpeg" alt="Galeria ME Eventos 1"></div>
+            <div class="gallery-item"><img src="WhatsApp Image 2026-07-30 at 16.47.54 (1).jpeg" alt="Galeria ME Eventos 2"></div>
+            <div class="gallery-item"><img src="WhatsApp Image 2026-07-30 at 16.47.54.jpeg" alt="Galeria ME Eventos 3"></div>
+            <div class="gallery-item"><img src="WhatsApp Image 2026-07-30 at 16.54.34.jpeg" alt="Galeria ME Eventos 4"></div>
+        </div>
+    </section>
+
+    <!-- Depoimentos -->
+    <section class="container" id="depoimentos">
+        <div class="section-header">
+            <span class="section-tag">Avaliações Reais</span>
+            <h2 class="section-title">O Que Falam Da <span>ME Eventos</span></h2>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-print"><img src="WhatsApp Image 2026-07-30 at 17.11.10 (3).jpeg" alt="Print Simone"></div>
+                <p>"Beatriz, muito obrigada! O pessoal amou, eu simplesmente adorei ❤️"</p>
+                <div class="testimonial-author"><span>Simone</span> <span>⭐⭐⭐⭐⭐</span></div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-print"><img src="WhatsApp Image 2026-07-30 at 17.11.10 (2).jpeg" alt="Print Ana Paula"></div>
+                <p>"Amanhã vejo todos 😊 Vcs são top 👏👏👏"</p>
+                <div class="testimonial-author"><span>Ana Paula</span> <span>⭐⭐⭐⭐⭐</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="container">
+        <div class="section-header">
+            <span class="section-tag">Tire Suas Dúvidas</span>
+            <h2 class="section-title">Perguntas <span>Frequentes</span></h2>
+        </div>
+        <div style="max-width: 800px; margin: 0 auto;">
+            <div class="faq-item">
+                <h4>Qual a região atendida?</h4>
+                <p>Atendemos Campinas - SP e toda a região metropolitana (Valinhos, Vinhedo, Sumaré, Hortolândia, Indaiatuba, Americana, etc.).</p>
+            </div>
+            <div class="faq-item">
+                <h4>É necessário ter Wi-Fi no local?</h4>
+                <p>Não precisa se preocupar! Levamos nossa própria conexão para que os convidados baixem os vídeos no celular sem travamentos.</p>
+            </div>
+            <div class="faq-item">
+                <h4>Com quanto tempo de antecedência vocês chegam?</h4>
+                <p>Nossa equipe chega de 1 a 2 horas antes do início da atração para realizar toda a montagem e testes de iluminação.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer>
+        <img src="WhatsApp Image 2026-07-30 at 16.53.21.jpeg" alt="Logo ME Eventos" class="footer-logo">
+        <h3>ME EVENTOS</h3>
+        <p>Plataforma 360° & Totem Fotográfico em Campinas e Região</p>
+        <p style="color: var(--gold-primary); font-weight: 600; margin-top: 5px;">WhatsApp: (19) 99495-4772</p>
+        
+        <div class="social-footer">
+            <a href="https://instagram.com/Me_eventos17" target="_blank" title="Siga no Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/5519994954772" target="_blank" title="Chame no WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+        
+        <p style="font-size: 0.8rem; color: #555; margin-top: 15px;">&copy; 2026 ME Eventos. Todos os direitos reservados.</p>
+    </footer>
+
+</body>
+</html>
+
